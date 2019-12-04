@@ -1,8 +1,7 @@
 'use strict'
 
 const formatPrice = (price) => {
-  console.log('converting...', price);
-  return parseFloat(price);
+  return parseFloat(price.replace('$',''));
 }
 
 /**
@@ -15,10 +14,10 @@ module.exports = () => {
       // They receive as parameter:
       // - `htmlDom`: the cheerio HTML instance.
       // - `url`: The input URL used for extact the content.
-      formatPrice(({ htmlDom: $, url }) => $('[itemprop=price]').attr('content')),
-      formatPrice(({ htmlDom: $, url }) => $('[property="og:price:amount"]').attr('content')),
-      formatPrice(({ htmlDom: $, url }) => $('[property="product:price:amount"]').attr('content')),
-      formatPrice(({ htmlDom: $, url }) => $('[itemprop=price]').html())
+      ({ htmlDom: $, url }) => formatPrice($('[itemprop=price]').attr('content')),
+      ({ htmlDom: $, url }) => formatPrice($('[property="og:price:amount"]').attr('content')),
+      ({ htmlDom: $, url }) => formatPrice($('[property="product:price:amount"]').attr('content')),
+      ({ htmlDom: $, url }) => formatPrice($('[itemprop=price]').html())
     ]
   }
   return rules
