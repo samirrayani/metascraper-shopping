@@ -1,6 +1,7 @@
 'use strict'
 
 const formatPrice = (price) => {
+  console.log('converting...', price)
   return parseFloat(price.replace('$',''));
 }
 
