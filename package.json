@@ -1,0 +1,23 @@
+{
+  "name": "metascraper-price",
+  "version": "1.0.0",
+  "description": "Get price property from HTML markup",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samirrayani/metascraper-price.git"
+  },
+  "keywords": [
+    "price",
+    "metascraper"
+  ],
+  "author": "Samir Rayani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samirrayani/metascraper-price/issues"
+  },
+  "homepage": "https://github.com/samirrayani/metascraper-price#readme"
+}
