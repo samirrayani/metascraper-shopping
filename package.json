@@ -1,6 +1,6 @@
 {
   "name": "@samirrayani/metascraper-price",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Get price property from HTML markup",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,8 @@
   "homepage": "https://github.com/samirrayani/metascraper-price#readme",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@metascraper/helpers": "^5.8.7"
   }
 }
