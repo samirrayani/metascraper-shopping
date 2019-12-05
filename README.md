@@ -13,4 +13,4 @@ $ npm install @samirrayani/metascraper-price --save
 
 ## License
 
-**metascraper-price** © Samir Rayani, Released under the [MIT](https://github.com/samirrayani/metascraper-price/blob/master/LICENSE.md) License.
+**@samirrayani/metascraper-price** © 2019 Samir Rayani, Released under the [MIT](https://github.com/samirrayani/metascraper-price/blob/master/LICENSE.md) License.
