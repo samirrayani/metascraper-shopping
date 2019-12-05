@@ -1,5 +1,5 @@
 {
-  "name": "metascraper-price",
+  "name": "@samirrayani/metascraper-price",
   "version": "1.0.5",
   "description": "Get price property from HTML markup",
   "main": "index.js",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/samirrayani/metascraper-price/issues"
   },
-  "homepage": "https://github.com/samirrayani/metascraper-price#readme"
+  "homepage": "https://github.com/samirrayani/metascraper-price#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
