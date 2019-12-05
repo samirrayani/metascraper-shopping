@@ -9,7 +9,7 @@ const { $jsonld } = require('@metascraper/helpers')
 module.exports = () => {
   const rules = {
     price: [
-      $jsonld('price'),
+      $jsonld('offers.price'),
       ({ htmlDom: $, url }) => $('[itemprop=price]').attr('content'),
       ({ htmlDom: $, url }) => $('[property="og:price:amount"]').attr('content'),
       ({ htmlDom: $, url }) => $('[property="product:price:amount"]').attr('content'),
