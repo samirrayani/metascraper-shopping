@@ -8,5 +8,9 @@
 ## Install
 
 ```bash
-$ npm install metascraper-price --save
+$ npm install @samirrayani/metascraper-price --save
 ```
+
+## License
+
+**metascraper-price** © Samir Rayani, Released under the [MIT](https://github.com/samirrayani/metascraper-price/blob/master/LICENSE.md) License.
