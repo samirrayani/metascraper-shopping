@@ -10,6 +10,7 @@ module.exports = () => {
   const rules = {
     price: [
       $jsonld('offers.price'),
+      $jsonld('0.offers.price'),
       ({ htmlDom: $, url }) => $('[itemprop=price]').attr('content'),
       ({ htmlDom: $, url }) => $('[property="og:price:amount"]').attr('content'),
       ({ htmlDom: $, url }) => $('[property="product:price:amount"]').attr('content'),
