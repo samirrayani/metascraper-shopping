@@ -47,9 +47,9 @@ test('price with commas', async () => {
 
 test('overstock.com ld+json', async () => {
   const html = await readFile(resolve(__dirname, 'fixtures/overstock.html'))
-  const url = 'https://www.overstock.com/Lighting-Ceiling-Fans/Luxury-Modern-Track-Lighting-10.5-H-x-44.5-W-with-Spa-Style-Polished-Chrome-Finish/19478614/product.html'
+  const url = 'https://www.overstock.com/Home-Garden/Certified-International-Elegance-Canape-Plates-Set-of-6/29099468/product.html?refccid=LDNVKF2XQ7MKQP2LE3VXMUYALU&searchidx=0&guid=f4adad64-034d-46b2-92dc-e956d094d3ea&osp=true&option=51668490&kwds=&rfmt='
   const metadata = await metascraper({ url, html })
-  expect(metadata.price).toBe(269.99);
+  expect(metadata.price).toBe(31.49);
 });
 
 test('jossandmain.com ld+json', async () => {
