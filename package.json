@@ -1,6 +1,6 @@
 {
   "name": "@samirrayani/metascraper-price",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Get price property from HTML markup",
   "main": "index.js",
   "scripts": {
