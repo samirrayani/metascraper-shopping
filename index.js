@@ -9,10 +9,14 @@ const { $jsonld } = require('@metascraper/helpers')
 module.exports = () => {
   const rules = {
     price: [
-      $jsonld('offers.price'),
-      $jsonld('0.offers.price'),
-      ({ htmlDom: $, url }) => $('[itemprop=price]').attr('content'),
+      // They receive as parameter:
+      // - `htmlDom`: the cheerio HTML instance.
+      // - `url`: The input URL used for extact the content.
+      ({ htmlDom: $, url }) => $jsonld('price')($,url),
+      ({ htmlDom: $, url }) => $jsonld('offers.price')($,url),
+      ({ htmlDom: $, url }) => $jsonld('0.offers.price')($,url),
       ({ htmlDom: $, url }) => $('[property="og:price:amount"]').attr('content'),
+      ({ htmlDom: $, url }) => $('[itemprop=price]').attr('content'), 
       ({ htmlDom: $, url }) => $('[property="product:price:amount"]').attr('content'),
       ({ htmlDom: $, url }) => $('[itemprop=price]').html()
     ]
