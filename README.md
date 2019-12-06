@@ -24,6 +24,7 @@ const metascraper = require('metascraper')([
 ]);
 const got = require('got');
 
+const targetUrl = '<an URL from any e-commerce website>';
 const { body: html, url } = await got(targetUrl);
 const metadata = await metascraper({ html, url });
 console.log(metadata);
