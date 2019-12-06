@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@samirrayani/metascraper-price.svg?style=flat-square)](https://www.npmjs.com/package/@samirrayani/metascraper-price)
 [![Dependency Status](https://david-dm.org/samirrayani/metascraper-price.svg?style=flat-square)](https://david-dm.org/samirrayani/metascraper-price)
 
-> Get price property from HTML markup.
+> A custom rule bundle for [@microlinkhq/metascraper](https://github.com/microlinkhq/metascraper) to get the price property from HTML markup.
 
 ## Install
 
