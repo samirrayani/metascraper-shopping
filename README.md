@@ -11,6 +11,32 @@
 $ npm install @samirrayani/metascraper-price --save
 ```
 
+## Usage
+
+```javascript
+'use strict'
+
+const metascraper = require('metascraper')([
+  require('metascraper-title')(),
+  require('metascraper-image')(),
+  require('metascraper-url')(),
+  require('@samirrayani/metascraper-price')()
+]);
+const got = require('got');
+
+const { body: html, url } = await got(targetUrl);
+const metadata = await metascraper({ html, url });
+console.log(metadata);
+/*
+metadata: {
+  title:  [String]
+  image:  [String]
+  url:    [String]
+  price:  [Float|null]
+}
+*/
+```
+
 ## License
 
 **@samirrayani/metascraper-price** © 2019 Samir Rayani, Released under the [MIT](https://github.com/samirrayani/metascraper-price/blob/master/LICENSE.md) License.
