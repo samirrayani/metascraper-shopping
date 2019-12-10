@@ -6,7 +6,7 @@ const toPriceFormat = (price) => {
   if(typeof price === 'string') {
     price = price.replace(/\$/g,'').replace(/,/g,'');
   }
-  return isNaN(price) ? undefined : parseFloat(price);
+  return isNaN(price) ? undefined : +parseFloat(price).toFixed(2);
 }
 
 /**
