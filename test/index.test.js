@@ -65,3 +65,10 @@ test('costco.com product:price:amount', async () => {
   const metadata = await metascraper({ url, html })
   expect(metadata.price).toBe(329.99);
 });
+
+test('potterybarn.com no longer available', async () => {
+  const html = await readFile(resolve(__dirname, 'fixtures/potterybarn.html'))
+  const url = 'https://www.potterybarn.com/products/tully-brass-sconce/'
+  const metadata = await metascraper({ url, html })
+  expect(metadata.price).toBeFalsy();
+});
