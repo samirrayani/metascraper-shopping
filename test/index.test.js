@@ -72,3 +72,10 @@ test('potterybarn.com no longer available', async () => {
   const metadata = await metascraper({ url, html })
   expect(metadata.price).toBeFalsy();
 });
+
+test('rejuvenation.com item on sale', async () => {
+  const html = await readFile(resolve(__dirname, 'fixtures/rejuvenation.html'))
+  const url = 'https://www.rejuvenation.com/catalog/collections/keystick-wall-sconce/products/5c50a4d2ccf2f73ea295b9e1'
+  const metadata = await metascraper({ url, html })
+  expect(metadata.price).toBe(120);
+});
