@@ -79,3 +79,10 @@ test('rejuvenation.com item on sale', async () => {
   const metadata = await metascraper({ url, html })
   expect(metadata.price).toBe(120.00);
 });
+
+test('amazon.com asin price', async () => {
+  const html = await readFile(resolve(__dirname, 'fixtures/amazon.html'))
+  const url = 'https://www.amazon.com/Lighting-Fixture-Plaster-Conservatory-Dimmable/dp/B07G2L3JMM'
+  const metadata = await metascraper({ url, html })
+  expect(metadata.price).toBe(29.99);
+});
