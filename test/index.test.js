@@ -86,3 +86,10 @@ test('amazon.com asin price', async () => {
   const metadata = await metascraper({ url, html })
   expect(metadata.price).toBe(29.99);
 });
+
+test('globalindustrial.com NaN', async () => {
+  const html = await readFile(resolve(__dirname, 'fixtures/globalindustrial.html'))
+  const url = 'https://www.globalindustrial.com/p/work-benches/components/tops/60-x-24-maple-square-edge-bench-top'
+  const metadata = await metascraper({ url, html })
+  expect(metadata.price).toBeFalsy();
+});
