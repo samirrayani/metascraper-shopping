@@ -45,6 +45,8 @@ module.exports = () => {
       ({ htmlDom: $, url }) => toPriceFormat($jsonld('price')($,url)),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld('offers.price')($,url)),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld('0.offers.price')($,url)),
+      ({ htmlDom: $, url }) => toPriceFormat($jsonld('offers.lowPrice')($,url)),
+      ({ htmlDom: $, url }) => toPriceFormat($jsonld('offers.highPrice')($,url)),
       ({ htmlDom: $, url }) => toPriceFormat($('[data-asin-price]').attr('data-asin-price')), //amazon
       ({ htmlDom: $, url }) => toPriceFormat($('[itemprop=price]').html())
     ],
