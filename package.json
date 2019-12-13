@@ -14,6 +14,9 @@
     "price",
     "metascraper"
   ],
+  "pre-commit": [
+    "test"
+  ],
   "author": "Samir Rayani",
   "license": "MIT",
   "bugs": {
@@ -28,8 +31,10 @@
   },
   "devDependencies": {
     "fs": "0.0.1-security",
+    "got": "^10.0.4",
     "jest": "^24.9.0",
     "metascraper": "^5.8.9",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pre-commit": "^1.2.2"
   }
 }
