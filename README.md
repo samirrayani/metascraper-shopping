@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@samirrayani/metascraper-price.svg?style=flat-square)](https://www.npmjs.com/package/@samirrayani/metascraper-price)
 [![Dependency Status](https://david-dm.org/samirrayani/metascraper-price.svg?style=flat-square)](https://david-dm.org/samirrayani/metascraper-price)
 
-> A custom rule bundle for [@microlinkhq/metascraper](https://github.com/microlinkhq/metascraper) to get the price property from HTML markup.
+> A custom rule bundle for [@microlinkhq/metascraper](https://github.com/microlinkhq/metascraper) to get product information from HTML markup on merchant websites
 
 ## Install
 
@@ -30,10 +30,15 @@ const metadata = await metascraper({ html, url });
 console.log(metadata);
 /*
 metadata: {
-  title:  [String]
-  image:  [String]
-  url:    [String]
-  price:  [Float|null]
+  title:        [String]
+  image:        [String]
+  url:          [String]
+  price:        [Float|null]
+  currency:     [String]
+  condition:    [String]
+  sku:          [String]
+  mpn:          [String]
+  availability: [String]
 }
 */
 ```
