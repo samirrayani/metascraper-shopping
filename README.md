@@ -17,10 +17,10 @@ $ npm install @samirrayani/metascraper-shopping --save
 'use strict'
 
 const metascraper = require('metascraper')([
+  require('@samirrayani/metascraper-shopping')(),
   require('metascraper-title')(),
   require('metascraper-image')(),
-  require('metascraper-url')(),
-  require('@samirrayani/metascraper-shopping')()
+  require('metascraper-url')()
 ]);
 const got = require('got');
 
