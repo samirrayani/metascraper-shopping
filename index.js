@@ -4,11 +4,14 @@ const { $jsonld } = require('@metascraper/helpers')
 const { toPriceFormat, getHostname } = require('./helpers');
 
 /**
- * A set of rules we want to declare under `metascraper-shopping` namespace.
+ * A set of rules we want to declare under the `metascraper-shopping` namespace.
  *
 **/
 module.exports = () => {
   const rules = {
+    image: [
+      ({ htmlDom: $, url }) => $('img#comparison_image').attr('src'), //amazon      
+    ],
     currency: [
       ({ htmlDom: $, url }) => $('[property="og:price:currency"]').attr('content'),
       ({ htmlDom: $, url }) => $jsonld('offers.0.priceCurrency')($,url),
@@ -27,8 +30,7 @@ module.exports = () => {
       ({ htmlDom: $, url }) => $jsonld('offers.0.sku')($,url),
       ({ htmlDom: $, url }) => $('[itemprop=sku]').html(), 
     ],
-    //mpn=ManufacturProductNumber
-    mpn: [
+    mpn: [ //mpn=ManufacturProductNumber
       ({ htmlDom: $, url }) => $jsonld('mpn')($,url),
       ({ htmlDom: $, url }) => $jsonld('offers.mpn')($,url),
       ({ htmlDom: $, url }) => $jsonld('offers.0.mpn')($,url),
@@ -49,6 +51,9 @@ module.exports = () => {
       ({ htmlDom: $, url }) => toPriceFormat($jsonld('offers.highPrice')($,url)),
       ({ htmlDom: $, url }) => toPriceFormat($('[data-asin-price]').attr('data-asin-price')), //amazon
       ({ htmlDom: $, url }) => toPriceFormat($('[itemprop=price]').html())
+    ],
+    asin: [ //unique amazon identifier
+      ({ htmlDom: $, url }) => $('[data-asin]').attr('data-asin'),
     ],
     hostname: [
       ({ htmlDom: $, url }) => getHostname(url),
