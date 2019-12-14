@@ -1,18 +1,25 @@
 {
-  "name": "@samirrayani/metascraper-price",
-  "version": "1.2.6",
-  "description": "Get price property from HTML markup",
+  "name": "@samirrayani/metascraper-shopping",
+  "version": "1.2.7",
+  "description": "Get product information from HTML markup on merchant websites",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/samirrayani/metascraper-price.git"
+    "url": "git+https://github.com/samirrayani/metascraper-shopping.git"
   },
   "keywords": [
     "price",
-    "metascraper"
+    "metascraper",
+    "shopping",
+    "sku",
+    "mpn",
+    "currency",
+    "condition",
+    "availability",
+    "asin"
   ],
   "pre-commit": [
     "test"
@@ -20,9 +27,9 @@
   "author": "Samir Rayani",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/samirrayani/metascraper-price/issues"
+    "url": "https://github.com/samirrayani/metascraper-shopping/issues"
   },
-  "homepage": "https://github.com/samirrayani/metascraper-price#readme",
+  "homepage": "https://github.com/samirrayani/metascraper-shopping#readme",
   "publishConfig": {
     "access": "public"
   },
