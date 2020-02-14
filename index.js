@@ -10,7 +10,8 @@ const { toPriceFormat, getHostname } = require('./helpers');
 module.exports = () => {
   const rules = {
     image: [
-      ({ htmlDom: $, url }) => $('img#comparison_image').attr('src'), //amazon      
+      ({ htmlDom: $, url }) => $('div.ImageComponent img[data-codeception-id="ImageComponent"]').attr('src'), //wayfair.com
+      ({ htmlDom: $, url }) => $('img#comparison_image').attr('src'), //amazon.com      
     ],
     currency: [
       ({ htmlDom: $, url }) => $('[property="og:price:currency"]').attr('content'),
