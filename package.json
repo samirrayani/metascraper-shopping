@@ -1,6 +1,6 @@
 {
   "name": "@samirrayani/metascraper-shopping",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Get product information from HTML markup on merchant websites",
   "main": "index.js",
   "scripts": {
