@@ -1,8 +1,8 @@
-'use strict'
+"use strict";
 
-const metascraper = require('metascraper')([require('..')()])
+const metascraper = require("metascraper")([require("..")()]);
 
-test('returns open graph value (og:price:currency)', async () => {
+test("returns open graph value (og:price:currency)", async () => {
   const html = `
     <!DOCTYPE html>
     <html lang="en">
@@ -17,8 +17,8 @@ test('returns open graph value (og:price:currency)', async () => {
     <body>
     </body>
     </html>
-    `
-  const url = 'https://www.strukbuilt.com/';
+    `;
+  const url = "https://www.strukbuilt.com/";
   const metadata = await metascraper({ html, url });
-  expect(metadata.currency).toBe('USD');
+  expect(metadata.currency).toBe("USD");
 });
