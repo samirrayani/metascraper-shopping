@@ -19,6 +19,7 @@ module.exports = () => {
       ({ htmlDom: $, url }) => $jsonld('offers.priceCurrency')($,url),
       ({ htmlDom: $, url }) => $('[data-asin-currency-code]').attr('data-asin-currency-code'), //amazon
       ({ htmlDom: $, url }) => $('[property="product:price:currency"]').attr('content'),
+      ({ htmlDom: $, url }) => $('[itemprop=priceCurrency]').attr('content')
     ],
     condition: [
       ({ htmlDom: $, url }) => $jsonld('itemCondition')($,url),
