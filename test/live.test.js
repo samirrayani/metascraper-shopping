@@ -1,5 +1,3 @@
-"use strict";
-
 const got = require("got");
 const metascraper = require("metascraper")([require("..")()]);
 

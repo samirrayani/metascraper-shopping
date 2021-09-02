@@ -1,5 +1,3 @@
-"use strict";
-
 const { readFile } = require("fs").promises;
 const { resolve } = require("path");
 const metascraper = require("metascraper")([require("..")()]);
