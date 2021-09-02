@@ -3,15 +3,22 @@
 const { $jsonld, memoizeOne } = require("@metascraper/helpers");
 const { toPriceFormat, getHostname } = require("./helpers");
 
-const jsonLdGraph = memoizeOne(($) => {
-  return JSON.parse($('script[type="application/ld+json"]').html());
+const jsonLd = memoizeOne(($) => {
+  const jsonld = JSON.parse($('script[type="application/ld+json"]').html());
+  return jsonld;
 });
 
-const jsonLdProduct = memoizeOne(($) => {
+const jsonLdGraph = memoizeOne(($) => {
+  const jsonld = JSON.parse($('script[type="application/ld+json"]').html());
+  return jsonld && jsonld["@graph"];
+});
+
+//@graph { @type=Product }
+const jsonLdGraphProduct = memoizeOne(($) => {
   const jsonld = jsonLdGraph($);
 
-  if (jsonld && jsonld["@graph"]) {
-    let products = jsonld["@graph"].filter((i) => {
+  if (jsonld) {
+    let products = jsonld.filter((i) => {
       return i["@type"] === "Product";
     });
     return products.length > 0 ? products[0] : null;
@@ -21,8 +28,8 @@ const jsonLdProduct = memoizeOne(($) => {
 
 const jsonLdLastBreadcrumb = memoizeOne(($) => {
   const jsonld = jsonLdGraph($);
-  if (jsonld && jsonld["@graph"]) {
-    let breadcrumbs = jsonld["@graph"].filter((i) => {
+  if (jsonld) {
+    let breadcrumbs = jsonld.filter((i) => {
       return i["@type"] === "BreadcrumbList";
     });
     let breadcrumb = breadcrumbs.length > 0 && breadcrumbs[0];
@@ -40,17 +47,31 @@ const jsonLdLastBreadcrumb = memoizeOne(($) => {
  **/
 module.exports = () => {
   const rules = {
+    brand: [
+      ({ htmlDom: $, url }) => {
+        let jsonld = jsonLd($);
+        return jsonld && jsonld.brand;
+      },
+    ],
     name: [
+      ({ htmlDom: $, url }) => {
+        let jsonld = jsonLd($);
+        return jsonld && jsonld.name;
+      },
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLdLastBreadcrumb($);
         return jsonld && jsonld.name;
       },
       ({ htmlDom: $, url }) => {
-        let jsonld = jsonLdProduct($);
+        let jsonld = jsonLdGraphProduct($);
         return jsonld && jsonld.name;
       },
     ],
     image: [
+      ({ htmlDom: $, url }) => {
+        let jsonld = jsonLd($);
+        return jsonld && jsonld.image;
+      },
       ({ htmlDom: $, url }) => $('a[data-fancybox="images"]').attr("href"), //fireclaytile.com
       ({ htmlDom: $, url }) =>
         $('div.ImageComponent img[data-codeception-id="ImageComponent"]').attr(
@@ -60,7 +81,7 @@ module.exports = () => {
     ],
     currency: [
       ({ htmlDom: $, url }) => {
-        let jsonld = jsonLdProduct($);
+        let jsonld = jsonLdGraphProduct($);
         return jsonld && jsonld.offers && jsonld.offers.priceCurrency;
       },
       ({ htmlDom: $, url }) =>
@@ -80,7 +101,7 @@ module.exports = () => {
     ],
     sku: [
       ({ htmlDom: $, url }) => {
-        let jsonld = jsonLdProduct($);
+        let jsonld = jsonLdGraphProduct($);
         return jsonld && jsonld.sku;
       },
       ({ htmlDom: $, url }) => $jsonld("sku")($, url),
@@ -96,7 +117,7 @@ module.exports = () => {
     ],
     availability: [
       ({ htmlDom: $, url }) => {
-        let jsonld = jsonLdProduct($);
+        let jsonld = jsonLdGraphProduct($);
         return jsonld && jsonld.offers && jsonld.offers.availability;
       },
       ({ htmlDom: $, url }) =>
@@ -106,7 +127,7 @@ module.exports = () => {
     ],
     price: [
       ({ htmlDom: $, url }) => {
-        let jsonld = jsonLdProduct($);
+        let jsonld = jsonLdGraphProduct($);
         return jsonld && jsonld.offers && toPriceFormat(jsonld.offers.price);
       },
       ({ htmlDom: $, url }) =>
