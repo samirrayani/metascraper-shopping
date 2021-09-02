@@ -10,6 +10,7 @@ const { toPriceFormat, getHostname } = require("./helpers");
 module.exports = () => {
   const rules = {
     image: [
+      ({ htmlDom: $, url }) => $('a[data-fancybox="images"]').attr("href"), //fireclaytile.com
       ({ htmlDom: $, url }) =>
         $('div.ImageComponent img[data-codeception-id="ImageComponent"]').attr(
           "src"
@@ -75,6 +76,9 @@ module.exports = () => {
       ({ htmlDom: $, url }) => $("[data-asin]").attr("data-asin"),
     ],
     hostname: [({ htmlDom: $, url }) => getHostname(url)],
+    retailer: [
+      ({ htmlDom: $, url }) => $('[property="og:site_name"]').attr("content"),
+    ],
   };
   return rules;
 };
