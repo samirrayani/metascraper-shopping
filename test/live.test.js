@@ -14,7 +14,7 @@ test("live test fireclay", async () => {
   const metadata = await metascraper({ html, url });
   expect(metadata.retailer).toBe("Fireclay Tile");
   expect(metadata.hostname).toBe("fireclaytile.com");
-}, 1000);
+}, 10000);
 
 test("live test wayfair", async () => {
   const targetUrl =
@@ -29,7 +29,7 @@ test("live test wayfair", async () => {
   const metadata = await metascraper({ html, url });
   expect(metadata.brand).toBe("Bosch");
   expect(metadata.hostname).toBe("wayfair.com");
-}, 1000);
+}, 10000);
 
 test("live test fyrn", async () => {
   const targetUrl =
@@ -43,4 +43,17 @@ test("live test fyrn", async () => {
 
   const metadata = await metascraper({ html, url });
   expect(metadata.hostname).toBe("homedepot.com");
-}, 1000);
+}, 10000);
+
+test("live test compac.es", async () => {
+  const targetUrl = "https://us.compac.es/color/unique-calacatta/";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.retailer).toBe("COMPAC");
+}, 10000);
