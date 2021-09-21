@@ -34,8 +34,12 @@ const jsonLdLastBreadcrumb = memoizeOne(($) => {
     });
     let breadcrumb = breadcrumbs.length > 0 && breadcrumbs[0];
     let items = breadcrumb.itemListElement;
-    let item = items[items.length - 1];
-    return item;
+    if (items && items.length > 0) {
+      let item = items[items.length - 1];
+      return item;
+    }
+
+    return null;
   }
 
   return null;
