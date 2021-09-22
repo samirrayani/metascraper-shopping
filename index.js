@@ -83,8 +83,6 @@ module.exports = () => {
         if (url.includes("dacor.com")) {
           return url;
         }
-        //default to metascraper-url
-        return null;
       },
     ],
     image: [
@@ -151,7 +149,7 @@ module.exports = () => {
         $('[property="og:availability"]').attr("content"),
       ({ htmlDom: $, url }) => $jsonld("offers.availability")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.0.availability")($, url),
-      ({ htmlDom: $, url }) => $('[itemprop=availability]').attr('href')
+      ({ htmlDom: $, url }) => $("[itemprop=availability]").attr("href"),
     ],
     price: [
       ({ htmlDom: $, url }) => {
@@ -166,7 +164,7 @@ module.exports = () => {
         toPriceFormat($('[property="product:price:amount"]').attr("content")),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld("price")($, url)),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld("offers.price")($, url)),
-      ({ htmlDom: $, url }) => toPriceFormat($jsonld('offers.0.price')($,url)),
+      ({ htmlDom: $, url }) => toPriceFormat($jsonld("offers.0.price")($, url)),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld("0.offers.price")($, url)),
       ({ htmlDom: $, url }) =>
         toPriceFormat($jsonld("offers.lowPrice")($, url)),
