@@ -78,6 +78,12 @@ module.exports = () => {
       ({ htmlDom: $, url }) => $('[property="og:title"]').attr("content"),
     ],
     image: [
+      ({ htmlDom: $, url }) => $('a[data-fancybox="images"]').attr("href"), //fireclaytile.com
+      // ({ htmlDom: $, url }) =>
+      //   $('div.ImageComponent img[data-codeception-id="ImageComponent"]').attr(
+      //     "src"
+      //   ), //wayfair.com
+      ({ htmlDom: $, url }) => $("div#imgTagWrapperId img").attr("src"), //amazon.com
       ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"),
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
@@ -93,12 +99,6 @@ module.exports = () => {
 
         return image;
       },
-      ({ htmlDom: $, url }) => $('a[data-fancybox="images"]').attr("href"), //fireclaytile.com
-      ({ htmlDom: $, url }) =>
-        $('div.ImageComponent img[data-codeception-id="ImageComponent"]').attr(
-          "src"
-        ), //wayfair.com
-      ({ htmlDom: $, url }) => $("img#comparison_image").attr("data-src"), //amazon.com
     ],
     currency: [
       ({ htmlDom: $, url }) => {
