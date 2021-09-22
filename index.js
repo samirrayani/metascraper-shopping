@@ -75,8 +75,10 @@ module.exports = () => {
         let jsonld = jsonLdGraphProduct($);
         return jsonld && jsonld.name;
       },
+      ({ htmlDom: $, url }) => $('[property="og:title"]').attr("content"),
     ],
     image: [
+      ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"),
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
         let image = jsonld && jsonld.image;
@@ -97,7 +99,6 @@ module.exports = () => {
           "src"
         ), //wayfair.com
       ({ htmlDom: $, url }) => $("img#comparison_image").attr("data-src"), //amazon.com
-      ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"), //bestbuy.com
     ],
     currency: [
       ({ htmlDom: $, url }) => {
