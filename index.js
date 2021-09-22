@@ -77,12 +77,18 @@ module.exports = () => {
       },
       ({ htmlDom: $, url }) => $('[property="og:title"]').attr("content"),
     ],
+    url: [
+      ({ htmlDom: $, url }) => {
+        // dacor.com canonical points to homepage
+        if (url.includes("dacor.com")) {
+          return url;
+        }
+        //default to metascraper-url
+        return null;
+      },
+    ],
     image: [
       ({ htmlDom: $, url }) => $('a[data-fancybox="images"]').attr("href"), //fireclaytile.com
-      // ({ htmlDom: $, url }) =>
-      //   $('div.ImageComponent img[data-codeception-id="ImageComponent"]').attr(
-      //     "src"
-      //   ), //wayfair.com
       ({ htmlDom: $, url }) => $("div#imgTagWrapperId img").attr("src"), //amazon.com
       ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"),
       ({ htmlDom: $, url }) => {
