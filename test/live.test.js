@@ -55,5 +55,34 @@ test("live test compac.es", async () => {
   });
 
   const metadata = await metascraper({ html, url });
+
   expect(metadata.retailer).toBe("COMPAC");
+}, 10000);
+
+test("live test bestbuy", async () => {
+  const targetUrl =
+    "https://www.bestbuy.com/site/lg-2-0-cu-ft-over-the-range-microwave-with-sensor-cooking-printproof-matte-black-stainless-steel/6113238.p?skuId=6113238";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.retailer).toBe("Best Buy");
+}, 10000);
+
+test("live test signaturefaucets", async () => {
+  const targetUrl =
+    "https://signaturefaucets.com/products/imperium-touch-control-dual-function-pull-out-spout-kitchen-faucet";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.brand).toBe("Signature Faucets");
 }, 10000);
