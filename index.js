@@ -88,6 +88,24 @@ module.exports = () => {
     image: [
       ({ htmlDom: $, url }) => $('a[data-fancybox="images"]').attr("href"), //fireclaytile.com
       ({ htmlDom: $, url }) => $("div#imgTagWrapperId img").attr("src"), //amazon.com
+      ({ htmlDom: $, url }) => {
+        //arizontile
+        let relativeImage = $(".main-image-border.js-main-image").attr(
+          "data-zoom-image"
+        );
+        var fullUrl = new URL(url);
+        if (relativeImage) {
+          return `${fullUrl.protocol}//${fullUrl.hostname}/${relativeImage}`;
+        }
+      },
+      ({ htmlDom: $, url }) => {
+        //semihandmade shopify
+        let relativeImage = $("img.lazy.lazyload.img-fluid").attr("data-src");
+        var fullUrl = new URL(url);
+        if (relativeImage) {
+          return `${fullUrl.protocol}${relativeImage}`;
+        }
+      },
       ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"),
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
@@ -101,7 +119,7 @@ module.exports = () => {
           image = image[0];
         }
 
-        return image;
+        if (image) return image;
       },
     ],
     currency: [

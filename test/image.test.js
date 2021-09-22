@@ -63,3 +63,34 @@ test("live test bestbuy", async () => {
     "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6113/6113238_sd.jpg"
   );
 }, 10000);
+
+test("live test arizonatile", async () => {
+  const targetUrl =
+    "https://www.arizonatile.com/en/products/quartzite/taj-mahal";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.image).toBe(
+    "https://www.arizonatile.com//~/media/images/products/product-photos/quartzite/taj-mahal/quartzite-taj-mahal-swatch.jpg"
+  );
+}, 10000);
+
+test("live test semihandmade", async () => {
+  const targetUrl = "https://www.semihandmade.com/pages/sss-quarterline";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.image).toContain(
+    "https://cdn.shopify.com/s/files/1/0187/6812/files/door-sm-agave-quarterline_980x.png"
+  );
+}, 10000);
