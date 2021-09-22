@@ -54,12 +54,17 @@ module.exports = () => {
     brand: [
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
-        return jsonld && jsonld.brand;
+        let brand = jsonld && jsonld.brand;
+        if (brand && brand.name) {
+          brand = brand.name;
+        }
+        return brand;
       },
     ],
     name: [
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
+
         return jsonld && jsonld.name;
       },
       ({ htmlDom: $, url }) => {
@@ -74,7 +79,17 @@ module.exports = () => {
     image: [
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
-        return jsonld && jsonld.image;
+        let image = jsonld && jsonld.image;
+
+        if (image && image["@type"] === "ImageObject") {
+          image = image.image;
+        }
+
+        if (Array.isArray(image)) {
+          image = image[0];
+        }
+
+        return image;
       },
       ({ htmlDom: $, url }) => $('a[data-fancybox="images"]').attr("href"), //fireclaytile.com
       ({ htmlDom: $, url }) =>
@@ -82,6 +97,7 @@ module.exports = () => {
           "src"
         ), //wayfair.com
       ({ htmlDom: $, url }) => $("img#comparison_image").attr("data-src"), //amazon.com
+      ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"), //bestbuy.com
     ],
     currency: [
       ({ htmlDom: $, url }) => {
