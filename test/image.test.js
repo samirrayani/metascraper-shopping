@@ -90,8 +90,8 @@ test("live test wayfair", async () => {
   });
 
   const metadata = await metascraper({ html, url });
-  expect(metadata.image).toBe(
-    "https://secure.img1-fg.wfcdn.com/im/58976133/compr-r85/1294/129449826/epperly-frameless-lighted-bathroom-vanity-mirror.jpg"
+  expect(metadata.image).toContain(
+    "im/58976133/compr-r85/1294/129449826/epperly-frameless-lighted-bathroom-vanity-mirror.jpg"
   );
 }, 10000);
 
