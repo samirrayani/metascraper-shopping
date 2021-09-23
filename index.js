@@ -106,7 +106,6 @@ module.exports = () => {
           return `${fullUrl.protocol}${relativeImage}`;
         }
       },
-      ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"),
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
         let image = jsonld && jsonld.image;
@@ -121,6 +120,7 @@ module.exports = () => {
 
         if (image) return image;
       },
+      ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"),
     ],
     currency: [
       ({ htmlDom: $, url }) => {
