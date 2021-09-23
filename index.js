@@ -106,6 +106,8 @@ module.exports = () => {
           return `${fullUrl.protocol}${relativeImage}`;
         }
       },
+      ({ htmlDom: $, url }) =>
+        $('[property="og:image:secure_url"]').attr("content"),
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
         let image = jsonld && jsonld.image;
