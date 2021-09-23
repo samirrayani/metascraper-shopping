@@ -94,3 +94,19 @@ test("live test wayfair", async () => {
     "https://secure.img1-fg.wfcdn.com/im/58976133/compr-r85/1294/129449826/epperly-frameless-lighted-bathroom-vanity-mirror.jpg"
   );
 }, 10000);
+
+test("live test cletile", async () => {
+  const targetUrl =
+    "https://www.cletile.com/products/forage-terrazzo-white-24x24?variant=16958471307335";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.image).toContain(
+    "https://cdn.shopify.com/s/files/1/1127/8620/products/cle_tile_stone_cement_forage_terrazzo_white_24x24_single_main_formatted_2.0_grande.jpg"
+  );
+}, 10000);
