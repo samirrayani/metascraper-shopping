@@ -27,7 +27,6 @@ test("live test marble", async () => {
   });
 
   const metadata = await metascraper({ html, url });
-  console.log(metadata);
   expect(metadata.url).toBe(null);
 }, 10000);
 
