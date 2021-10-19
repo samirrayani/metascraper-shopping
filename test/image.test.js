@@ -60,7 +60,7 @@ test("live test arizonatile", async () => {
 
   const metadata = await metascraper({ html, url });
   expect(metadata.image).toBe(
-    "https://www.arizonatile.com//~/media/images/products/product-photos/quartzite/taj-mahal/quartzite-taj-mahal-swatch.jpg"
+    "https://arizonatile.widen.net/content/bhondmdmej/jpeg/Taj%20Mahal%20Quartzite.jpg?w=2048&h=1182&quality=80&x.app=portals&keep=c"
   );
 }, 10000);
 
