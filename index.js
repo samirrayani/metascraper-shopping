@@ -122,6 +122,7 @@ module.exports = () => {
 
         if (image) return image;
       },
+      ({ htmlDom: $, url }) => $('meta.swiftype[name="image"]').attr("content"),
       ({ htmlDom: $, url }) => {
         const image = $('[property="og:image"]').attr("content");
         const protocol = new URL(url).protocol;
@@ -129,10 +130,10 @@ module.exports = () => {
         try {
           new URL(image); //catch if not a valid URL and assume it's because of protocol
         } catch (e) {
-          return `${protocol}${image}`;
+          if (image) return `${protocol}${image}`;
         }
 
-        return image;
+        if (image) return image;
       },
     ],
     currency: [
