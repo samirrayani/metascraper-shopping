@@ -43,6 +43,27 @@ test("price with commas", async () => {
   expect(metadata.price).toBe(2699.0);
 });
 
+test("price with dots for readability and comma to separate cents", async () => {
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title></title>
+      <meta property="og:price:amount" content="$$2.699,00">
+    </head>
+    <body>
+    </body>
+    </html>
+    `;
+  const url = "https://www.strukbuilt.com/";
+  const metadata = await metascraper({ html, url });
+  expect(metadata.price).toBe(2699.0);
+});
+
+
 test("overstock.com ld+json", async () => {
   const html = await readFile(resolve(__dirname, "fixtures/overstock.html"));
   const url =
@@ -66,6 +87,15 @@ test("costco.com product:price:amount", async () => {
   const metadata = await metascraper({ url, html });
   expect(metadata.price).toBe(329.99);
 });
+
+test("etsy.com product:price:amount", async () => {
+  const html = await readFile(resolve(__dirname, "fixtures/etsy.html"));
+  const url =
+    "https://www.etsy.com/es/listing/550571276/el-original-he-y-hay-calabaza-decoracion";
+  const metadata = await metascraper({ url, html });
+  expect(metadata.price).toBe(48.0);
+});
+
 
 test("potterybarn.com no longer available", async () => {
   const html = await readFile(resolve(__dirname, "fixtures/potterybarn.html"));
