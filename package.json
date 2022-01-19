@@ -4,7 +4,8 @@
   "description": "Get product information from HTML markup on merchant websites",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
