@@ -28,7 +28,7 @@ test("live test fireclaytile", async () => {
 
   const metadata = await metascraper({ html, url });
   expect(metadata.image).toBe(
-    "https://assets.fireclaytile.com/transforms/amazons3/colors/239835/17ebb_48d74.jpg"
+    "https://d3prqoxewi1hpr.cloudfront.net/transforms/amazons3/colors/239835/17ebb_48d74.jpg"
   );
 }, 10000);
 
@@ -60,7 +60,7 @@ test("live test arizonatile", async () => {
 
   const metadata = await metascraper({ html, url });
   expect(metadata.image).toBe(
-    "https://arizonatile.widen.net/content/bhondmdmej/jpeg/Taj%20Mahal%20Quartzite.jpg?w=2048&h=1182&quality=80&x.app=portals&keep=c"
+    "https://arizonatile.widen.net/content/bhondmdmej/jpeg/Taj%20Mahal%20Quartzite.jpg"
   );
 }, 10000);
 
@@ -91,7 +91,7 @@ test("live test wayfair", async () => {
 
   const metadata = await metascraper({ html, url });
   expect(metadata.image).toContain(
-    "im/58976133/compr-r85/1294/129449826/epperly-frameless-lighted-bathroom-vanity-mirror.jpg"
+    "https://secure.img1-fg.wfcdn.com/im/50168724/resize-h600-w600%5Ecompr-r85/1294/129449826/Epperly+Frameless+Lighted+Bathroom+%2F+Vanity+Mirror.jpg"
   );
 }, 10000);
 
@@ -107,6 +107,6 @@ test("live test cletile", async () => {
 
   const metadata = await metascraper({ html, url });
   expect(metadata.image).toContain(
-    "https://cdn.shopify.com/s/files/1/1127/8620/products/cle_tile_stone_cement_forage_terrazzo_white_24x24_single_main_formatted_2.0_grande.jpg"
+    "https://www.cletile.com/img/400/400/resize/f/o/forage_terrazzo_white_square_ft0003-main.jpg"
   );
 }, 10000);

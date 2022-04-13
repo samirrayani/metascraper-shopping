@@ -59,7 +59,7 @@ test("test benjamin moore", async () => {
 
   const metadata = await metascraper({ html, url });
   expect(metadata.image).toBe(
-    "https://media.benjaminmoore.com/WebServices/prod/dollops/360x360/AF-10.png"
+    "https://media.benjaminmoore.com/WebServices/prod/cdp/836x1045/white-paint-252-gardenia-AF-10-rgb.jpg"
   );
 });
 
