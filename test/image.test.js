@@ -110,3 +110,20 @@ test("live test cletile", async () => {
     "https://www.cletile.com/img/400/400/resize/f/o/forage_terrazzo_white_square_ft0003-main.jpg"
   );
 }, 10000);
+
+test("portola paints & glazes", async () => {
+  // http://www.portolapaints.com/roman-clay/in-the-navy-roman-clay
+  const targetUrl =
+    "http://www.portolapaints.com/roman-clay/in-the-navy-roman-clay";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.image).toContain(
+    "http://static1.squarespace.com/static/543cd753e4b079875c5e7e32/5df28f0904b7db043c6b2280/5df28f2aa705f6184694bf51/1616453421322/4+-+In+the+Navy.jpg?format=1500w"
+  );
+}, 10000);

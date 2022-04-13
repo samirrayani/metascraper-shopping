@@ -47,6 +47,23 @@ const metascraper = require("metascraper")([require("..")()]);
 //   );
 // }, 10000);
 
+test("bedrosian", async () => {
+  const targetUrl =
+    "https://www.bedrosians.com/en/product/detail/makoto-tile/?itemNo=DECMAKSHW2510M";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  console.log(metadata);
+  expect(metadata.url).toBe(
+    "https://www.bedrosians.com/en/product/detail/makoto-tile/?itemNo=DECMAKSHW2510M"
+  );
+}, 1000);
+
 test("test benjamin moore", async () => {
   const targetUrl =
     "https://www.benjaminmoore.com/en-us/color-overview/find-your-color/color/af-10/gardenia?color=AF-10";

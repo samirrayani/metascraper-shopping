@@ -83,6 +83,9 @@ module.exports = () => {
         if (url.includes("dacor.com")) {
           return url;
         }
+        if (url.includes("bedrosian")) {
+          return $('link[rel="canonical"]').attr("href");
+        }
       },
     ],
     image: [
