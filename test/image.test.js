@@ -127,3 +127,19 @@ test("portola paints & glazes", async () => {
     "http://static1.squarespace.com/static/543cd753e4b079875c5e7e32/5df28f0904b7db043c6b2280/5df28f2aa705f6184694bf51/1616453421322/4+-+In+the+Navy.jpg?format=1500w"
   );
 }, 10000);
+
+test("crate & barrel", async () => {
+  const targetUrl =
+    "https://www.crateandbarrel.com/letti-70x55-ivory-throw-blanket/s311552?localedetail=US&storeid=521&a=1552&campaignid=10461646734&adgroupid=103999388779&targetid=pla-1461518834556&pla_sku=311552&pcat=HSW&ag=adult&gclid=Cj0KCQjwxtSSBhDYARIsAEn0thShQi_rAq7RS6KPSfgnS58OA87XRDPmvEUd14OsFLFvhcClE6hN33IaAtMbEALw_wcB";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.79 Safari/537.36 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.image).toContain(
+    "https://cb.scene7.com/is/image/Crate/Letti55x70ThrowIvorySSF21"
+  );
+}, 10000);
