@@ -58,7 +58,6 @@ test("bedrosian", async () => {
   });
 
   const metadata = await metascraper({ html, url });
-  console.log(metadata);
   expect(metadata.url).toBe(
     "https://www.bedrosians.com/en/product/detail/makoto-tile/?itemNo=DECMAKSHW2510M"
   );
