@@ -133,8 +133,7 @@ test("crate & barrel", async () => {
     "https://www.crateandbarrel.com/letti-70x55-ivory-throw-blanket/s311552?localedetail=US&storeid=521&a=1552&campaignid=10461646734&adgroupid=103999388779&targetid=pla-1461518834556&pla_sku=311552&pcat=HSW&ag=adult&gclid=Cj0KCQjwxtSSBhDYARIsAEn0thShQi_rAq7RS6KPSfgnS58OA87XRDPmvEUd14OsFLFvhcClE6hN33IaAtMbEALw_wcB";
   const { body: html, url } = await got(targetUrl, {
     headers: {
-      "user-agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.79 Safari/537.36 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+      "user-agent": `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.79 Safari/537.36 MS/${new Date()}`,
     },
   });
 
@@ -142,4 +141,20 @@ test("crate & barrel", async () => {
   expect(metadata.image).toContain(
     "https://cb.scene7.com/is/image/Crate/Letti55x70ThrowIvorySSF21"
   );
-}, 10000);
+}, 100000);
+
+test("rh", async () => {
+  const targetUrl =
+    "https://rh.com/catalog/product/product.jsp?productId=prod13810430";
+  const { body: html, url } = await got(targetUrl, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+    },
+  });
+
+  const metadata = await metascraper({ html, url });
+  expect(metadata.image).toContain(
+    "https://media.restorationhardware.com/is/image/rhis/prod13810430_E910352224_F?$np-fullwidth-lg$"
+  );
+}, 100000);

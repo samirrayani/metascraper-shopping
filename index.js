@@ -112,7 +112,13 @@ module.exports = () => {
 
       ({ htmlDom: $, url }) =>
         $('[property="og:image:secure_url"]').attr("content"),
-      ({ htmlDom: $, url }) => $('[property="og:image"]').attr("content"),
+      ({ htmlDom: $, url }) => {
+        let content = $('[property="og:image"]').attr("content");
+        if (url.includes("rh.com")) {
+          content = content.replace("$GAL4$", "$np-fullwidth-lg$");
+        }
+        return content;
+      },
       ({ htmlDom: $, url }) => {
         let jsonld = jsonLd($);
         let image = jsonld && jsonld.image;
