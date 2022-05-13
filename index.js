@@ -1,7 +1,7 @@
 "use strict";
 
-const { $jsonld, memoizeOne } = require("@metascraper/helpers");
-const { toPriceFormat, getHostname } = require("./helpers");
+const memoizeOne = require("memoize-one").default || require("memoize-one");
+const { $jsonld, toPriceFormat, getHostname } = require("./helpers");
 
 const jsonLd = memoizeOne(($) => {
   const jsonld = JSON.parse($('script[type="application/ld+json"]').html());
