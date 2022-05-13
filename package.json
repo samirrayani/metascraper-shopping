@@ -1,6 +1,6 @@
 {
   "name": "@samirrayani/metascraper-shopping",
-  "version": "1.4.21",
+  "version": "1.4.20",
   "description": "Get product information from HTML markup on merchant websites",
   "main": "index.js",
   "scripts": {
@@ -35,9 +35,7 @@
     "access": "public"
   },
   "dependencies": {
-    "entities": "^4.3.0",
-    "lodash": "^4.17.21",
-    "memoize-one": "^5.2.1"
+    "@metascraper/helpers": "^5.24.2"
   },
   "devDependencies": {
     "fs": "0.0.1-security",
