@@ -21,7 +21,7 @@ const jsonLdGraphProduct = memoizeOne(($) => {
     let products = jsonld.filter((i) => {
       return i["@type"] === "Product";
     });
-    return products.length > 0 ? products[0] : null;
+    return products.length > 0 ? products[0] : undefined;
   }
   return;
 });
@@ -39,10 +39,10 @@ const jsonLdLastBreadcrumb = memoizeOne(($) => {
       return item;
     }
 
-    return null;
+    return undefined;
   }
 
-  return null;
+  return undefined;
 });
 
 /**
