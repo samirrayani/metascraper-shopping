@@ -155,17 +155,21 @@ module.exports = () => {
       ({ htmlDom: $, url }) =>
         $('[property="og:price:currency"]').attr("content"),
       ({ htmlDom: $, url }) => $jsonld("offers.0.priceCurrency")($, url),
+      ({ htmlDom: $, url }) => $jsonld("offers.0.0.priceCurrency")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.priceCurrency")($, url),
       ({ htmlDom: $, url }) =>
         $("[data-asin-currency-code]").attr("data-asin-currency-code"), //amazon
       ({ htmlDom: $, url }) =>
         $('[property="product:price:currency"]').attr("content"),
+      ({ htmlDom: $, url }) =>
+        $('[property="product:original_price:currency"]').attr("content"),
       ({ htmlDom: $, url }) => $("[itemprop=priceCurrency]").attr("content"),
     ],
     condition: [
       ({ htmlDom: $, url }) => $jsonld("itemCondition")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.itemCondition")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.0.itemCondition")($, url),
+      ({ htmlDom: $, url }) => $jsonld("offers.0.0.itemCondition")($, url),
     ],
     sku: [
       ({ htmlDom: $, url }) => {
@@ -175,6 +179,7 @@ module.exports = () => {
       ({ htmlDom: $, url }) => $jsonld("sku")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.sku")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.0.sku")($, url),
+      ({ htmlDom: $, url }) => $jsonld("offers.0.0.sku")($, url),
       ({ htmlDom: $, url }) => $("[itemprop=sku]").html(),
     ],
     mpn: [
@@ -182,6 +187,7 @@ module.exports = () => {
       ({ htmlDom: $, url }) => $jsonld("mpn")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.mpn")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.0.mpn")($, url),
+      ({ htmlDom: $, url }) => $jsonld("offers.0.0.mpn")($, url),
     ],
     availability: [
       ({ htmlDom: $, url }) => {
@@ -192,6 +198,7 @@ module.exports = () => {
         $('[property="og:availability"]').attr("content"),
       ({ htmlDom: $, url }) => $jsonld("offers.availability")($, url),
       ({ htmlDom: $, url }) => $jsonld("offers.0.availability")($, url),
+      ({ htmlDom: $, url }) => $jsonld("offers.0.0.availability")($, url),
       ({ htmlDom: $, url }) => $("[itemprop=availability]").attr("href"),
     ],
     price: [
@@ -205,18 +212,25 @@ module.exports = () => {
         toPriceFormat($("[itemprop=price]").attr("content")),
       ({ htmlDom: $, url }) =>
         toPriceFormat($('[property="product:price:amount"]').attr("content")),
+      ({ htmlDom: $, url }) =>
+        toPriceFormat($('[property="product:original_price:amount"]').attr("content")),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld("price")($, url)),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld("offers.price")($, url)),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld("offers.0.price")($, url)),
+      ({ htmlDom: $, url }) => toPriceFormat($jsonld("offers.0.0.price")($, url)),
       ({ htmlDom: $, url }) => toPriceFormat($jsonld("0.offers.price")($, url)),
       ({ htmlDom: $, url }) =>
         toPriceFormat($jsonld("offers.lowPrice")($, url)),
       ({ htmlDom: $, url }) =>
         toPriceFormat($jsonld("offers.0.lowPrice")($, url)),
       ({ htmlDom: $, url }) =>
+        toPriceFormat($jsonld("offers.0.0.lowPrice")($, url)),
+      ({ htmlDom: $, url }) =>
         toPriceFormat($jsonld("offers.highPrice")($, url)),
       ({ htmlDom: $, url }) =>
         toPriceFormat($jsonld("offers.0.highPrice")($, url)),
+      ({ htmlDom: $, url }) =>
+        toPriceFormat($jsonld("offers.0.0.highPrice")($, url)),
       ({ htmlDom: $, url }) =>
         toPriceFormat($("[data-asin-price]").attr("data-asin-price")), //amazon
       ({ htmlDom: $, url }) => toPriceFormat($("[itemprop=price]").html()),
