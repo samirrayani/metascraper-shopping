@@ -13,7 +13,7 @@ const toPriceFormat = (price) => {
       : price.replace(/,/g,''); // case 2: price is formatted as '12,345.67'
   }
 
-  return ~~Number(price)>0 ? +parseFloat(price).toFixed(2) : undefined;
+  return Number(price)>0 ? +parseFloat(price).toFixed(2) : undefined;
 }
 
 const getHostname = (url) => {
