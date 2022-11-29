@@ -1,11 +1,27 @@
 const helpers = require("../helpers");
 
+const priceCases = [
+  ["2.75", 2.75],
+  ["$2.75", 2.75],
+  ["2,75", 2.75],
+  ["0.50", 0.5],
+  ["0", 0],
+  ["0.0", 0],
+  [".", undefined],
+  [",", undefined],
+  ["", undefined],
+  [undefined, undefined],
+  [null, undefined],
+  [NaN, undefined],
+  [{}, undefined],
+  [() => {}, undefined],
+  [0, 0],
+  [-2, -2],
+  [-0.2, -0.2]
+];
+
 describe("helpers", () => {
-  it("toPriceFormat", () => {
-    const givenThens = [["2.75", 2.75], ["$2.75", 2.75], ["2,75", 2.75], ["0.50", 0.50]];
-    for (const [given, then] of givenThens){
-      const when = helpers.toPriceFormat(given);
-      expect(when).toBe(then);
-    }
-  })
-})
+  it.each(priceCases)("toPriceFormat(%s) === %s", (given, then) => {
+    expect(helpers.toPriceFormat(given)).toBe(then);
+  });
+});
