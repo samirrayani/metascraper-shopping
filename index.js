@@ -4,13 +4,21 @@ const { $jsonld, memoizeOne } = require("@metascraper/helpers");
 const { toPriceFormat, getHostname } = require("./helpers");
 
 const jsonLd = memoizeOne(($) => {
-  const jsonld = JSON.parse($('script[type="application/ld+json"]').html());
-  return jsonld;
+  try {
+    const jsonld = JSON.parse($('script[type="application/ld+json"]').html());
+    return jsonld;
+  } catch (e) {
+    return null;
+  }
 });
 
 const jsonLdGraph = memoizeOne(($) => {
-  const jsonld = JSON.parse($('script[type="application/ld+json"]').html());
-  return jsonld && jsonld["@graph"];
+  try {
+    const jsonld = JSON.parse($('script[type="application/ld+json"]').html());
+    return jsonld && jsonld["@graph"];
+  } catch (e) {
+    return null;
+  }
 });
 
 //@graph { @type=Product }
